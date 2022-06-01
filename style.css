@@ -1,0 +1,194 @@
+* {box-sizing: border-box;}
+
+body {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    background: black;
+}
+
+#nonGameStuff {
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    border: 3px solid white;
+    border-radius: 20px;
+    align-items: center;
+    margin-right: 20px;
+    background-image: url("https://images.unsplash.com/photo-1533236897111-3e94666b2edf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8YXJjYWRlfGVufDB8fDB8fA%3D%3D&w=1000&q=80");
+    background-size: contain;
+
+}
+
+#board {
+    height: 36vh;
+    width: 36vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    row-gap: none;
+    margin-bottom: 50px;
+    
+}
+
+#container {
+    background-color: rgb(0, 0, 0, .75);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid white;
+    border-radius: 15px;
+    width: 500px;
+
+}
+
+
+#gameBox {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(0, 0, 0, .75);
+    border: 3px solid white;
+    border-radius: 15px;
+    margin-left: 20px;
+    background-image: url("https://images.unsplash.com/photo-1533236897111-3e94666b2edf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8YXJjYWRlfGVufDB8fDB8fA%3D%3D&w=1000&q=80");
+    background-size: contain;
+    background-image: scaleX(-1);
+
+}
+
+#clearGame {
+    padding: 20px;
+    width: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid white;
+    margin: 10px;
+    border-radius: 20px;
+    background-color: rgb(0, 0, 0, .75);
+
+}
+
+#gamePhrases {
+    padding: 10px;
+    color: white;
+    font-family: sans-serif;
+    background-color: rgb(0, 0, 0, .75);
+    text-align: center;
+    font-size: 20px;
+}
+
+.gameSpace {
+    height: 12vh;
+    width: 12vh;
+    border: 1px solid white;
+    padding: 5px;
+    color: white;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 60px;
+    font-family: sans-serif;
+}
+
+
+:hover.gameSpace {
+    cursor: pointer;
+    background-color: rgb(0, 0, 0, .7);
+}
+
+#playerGeneration {
+    color: white;
+    background-color: rgb(0, 0, 0, .75);
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border: 2px solid white;
+    border-radius: 20px;
+    margin: 10px;
+    width: 400px;
+
+}
+
+#playerNameInputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    
+}
+
+.textBox {
+    height: 3vh;
+    width: 25vh;
+    text-align: center;
+    font-size: 15px;
+    font-family: sans-serif;
+
+}
+
+#assign {
+    height: 6vh;
+    background-color: rgb(255, 255, 255);
+    
+}
+
+#playerDeclaration {
+    color: white;
+    font-size: 15px;
+    font-family: sans-serif;
+    background-color: rgb(0, 0, 0, .75);
+    padding: 10px;
+    margin: 10px;
+    border: 2px solid white;
+    border-radius: 15px;
+    text-align: center;
+    width: 400px;
+
+
+}
+
+#gameName {
+    color: white;
+    background-color: rgb(0, 0, 0, .75);
+    font-size: 35px;
+    font-family: sans-serif;
+    padding: 15px;
+    border: 2px solid white;
+    border-radius: 15px;
+    text-align: center;
+    margin: 10px;
+    width: 400px;
+}
+
+#instructions {
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid white;
+    border-radius: 15px;
+    justify-content: center;
+    background-color: rgb(0, 0, 0, .75);
+    list-style: none;
+    max-width: 400px;
+    font-size: 15px;
+    font-family: sans-serif;
+}
+
+#list {
+    list-style-type: disc;
+    align-items: center;
+}

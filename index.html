@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TicTacToe</title>
+    <link rel="stylesheet" href="style.css"></link>
+    <script src="app.js" defer></script>
+  
+</head>
+<body>
+  <div id="nonGameStuff">
+    <h1 id=gameName>TIC TAC TOE</h1>
+    <div id="instructions">
+      <P>INSTRUCTIONS</P>
+      <ul id="list">
+        <li>THIS IS A TWO PLAYER TIC TAC TOE GAME</li>
+        <li>ENTER THE NAMES OF THE PLAYERS BELOW AND CLICK ASSIGN TO GENERATE PLAYER 1</li>
+        <li>PLAYER 1 WILL BE ASSIGNED X'S AND WILL GO FIRST</li>
+        <li>3 CONSECUTIVE MARKS HORIZONTALLY, VERTICALLY, OR DIAGNOLLY WILL WIN THE GAME</li>
+        <li>FOLLOW THE ONSCREEN PROMPTS FOR ADDITIONAL ASSISTANCE</li>
+      </ul>
+    </div>
+    <div id="playerGeneration">
+      <div id="playerNameInputs">
+        <input class = textBox id="playerName1", type="text", placeholder="Player Name Here">
+        <input class = textBox id="playerName2", type="text", placeholder="Player Name Here">
+      </div>
+      <div>
+        <button id="assign", type="button">ASSIGN</button> 
+      </div>
+    </div>
+      <p id="playerDeclaration"> "I'M NOT REALLY A BIG X's AND O's GUY" - IRVING,KYRIE </p>
+    </div>
+      
+
+  <div id="gameBox">
+    <div id="container">
+    <p id="gamePhrases"> PLAYER 1 IT IS YOUR TURN </p>
+    <main id="board"></main>  
+    </div>
+    <div id="clearGame">
+      <button id="reset" type="button">RESET GAME</button>
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+
