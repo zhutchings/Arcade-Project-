@@ -6,7 +6,7 @@
 //Dom Selectors / variables
 let boardElement = document.querySelector("#board")
 let gameSpaces = document.getElementsByClassName("gameSpace")
-let winner = false
+
 let game_state = {
     players: {
         X: "X",
@@ -14,6 +14,8 @@ let game_state = {
     },
     player1 : "",
     player2 : "",
+    winner: false,
+    Tie: true,
     board: [
       [null, null, null],
       [null, null, null],
@@ -43,6 +45,7 @@ function winners() {
 for (let i = 0; i < game_state.board.length; i++) {
     if (game_state.board[i][0] == game_state.board[i][1] && game_state.board[i][1] == game_state.board[i][2] && game_state.board[i][0] !== null) {
         document.getElementById("gamePhrases").innerHTML = "WE HAVE A WINNER"
+        game_state.winner = true
         gameSpaces.removeEventListener("click", playerClick)
         return
     }
@@ -51,6 +54,7 @@ for (let i = 0; i <game_state.board.length; i++) {
     for (let j = 0; j < game_state.board[i].length; j++) {
         if (game_state.board[0][j] == game_state.board[1][j] && game_state.board[1][j] == game_state.board[2][j] && game_state.board[0][j] !== null) {
             document.getElementById("gamePhrases").innerHTML = "WE HAVE A WINNER"
+            game_state.winner = true
             gameSpaces.removeEventListener("click", playerClick)
             return
         }
@@ -58,64 +62,75 @@ for (let i = 0; i <game_state.board.length; i++) {
 }
 if (game_state.board[0][0] == game_state.board[1][1] && game_state.board[1][1] == game_state.board[2][2] && game_state.board[0][0] !== null) {
     document.getElementById("gamePhrases").innerHTML = "WE HAVE A WINNER"
+    game_state.winner = true
     gameSpaces.removeEventListener("click", playerClick)
     return
 }
 if (game_state.board[0][2] == game_state.board[1][1] && game_state.board[1][1] == game_state.board[2][0] && game_state.board[0][2] !== null) {
     document.getElementById("gamePhrases").innerHTML = "WE HAVE A WINNER"
+    game_state.winner = true
     gameSpaces.removeEventListener("click", playerClick)
     return 
 }
-//trying to get this to work as a tie 
 for (let i = 0; i <game_state.board.length; i++) {
     for (let j = 0; j < game_state.board[i].length; j++) {
-        if (game_state.board.includes(null) == false) {
-           document.getElementById("gamePhrases").innerHTML = "WE HAVE A TIE"
-           
+        if (game_state.board[i][j] == null) {
+            Tie = false   
         }
     }
 }
+if (Tie == true) {
+    document.getElementById("gamePhrases").innerHTML = "WE HAVE A TIE"}
 
 
 }
 
 function resetGame () {
-    let game_state = {
+     game_state = {
         players: {
             X: "X",
             O: "O",
         },
         player1 : "",
         player2 : "",
+        winner: false,
+        Tie: true,
         board: [
           [null, null, null],
           [null, null, null],
           [null, null, null]
         ]
         }
+    currentPlayer = game_state.players.X
+    render();
+    document.getElementById("gamePhrases").innerHTML = "Player 1 IT IS YOUR TURN"
     document.getElementById("playerDeclaration").innerHTML = `"I'M NOT REALLY A BIG X's AND O's GUY" - IRVING,KYRIE`
-    gameSpaces = ""
-    document.getElementsByClassName("textBox").text = ""
     console.log(game_state)
 }
 
 
 //This function sets up the gameboard 
 function render() {
-    
+    boardElement.innerHTML = ""
     for (let i = 0; i < game_state.board.length; i++) {
         for (let j = 0; j <game_state.board[i].length; j++) {
         let gameSpace = document.createElement("div");
         gameSpace.className = "gameSpace"
         gameSpace.id = [[i],[j]]// CHANGE THIS TO DATASET.. set as a string separate X and Y 
+        gameSpace.innerHTML = game_state.board[i][j] 
         boardElement.appendChild(gameSpace);
         gameSpace.addEventListener("click", playerClick)
+        console.log(game_state)
         }
     }
 }
 
 
 function playerClick(event) {
+    if (game_state.player1 == "") {
+        document.getElementById("gamePhrases").innerHTML = "YOU MUST ASSIGN AT LEAST ONE PLAYER IN ORDER TO START"
+        return
+    }
     console.log(event.target, this)
     let boardLocation = Array.from(this.id)
     //console.log(boardLocation)
@@ -127,10 +142,13 @@ function playerClick(event) {
         document.getElementById("gamePhrases").innerHTML = "INVALID SELECTION. SQUARE ALREADY UTILIZED"
         return
     }
+    
     game_state.board[i][j] = currentPlayer
     this.innerHTML = currentPlayer
     //console.log(game_state.board)
+    render();
     winners();
+    
     if (currentPlayer === game_state.players.X) {
         currentPlayer = game_state.players.O
         document.getElementById("gamePhrases").innerHTML = "PLAYER 2 IT IS YOUR TURN"
@@ -138,16 +156,19 @@ function playerClick(event) {
         currentPlayer = game_state.players.X
         document.getElementById("gamePhrases").innerHTML = "PLAYER 1 IT IS YOUR TURN"
     }
+
     //THIS SHOULD BE MY SINGLE PLAYER ENTRY CODE BLOCK... 
-   if (game_state.player2 === "COMPUTER") { 
+   if (game_state.player2 === "COMPUTER" || game_state.player2 === "") { 
     for (let i = 0; i < game_state.board.length; i++) {
         for (let j = 0; j <game_state.board[i].length; j++) {
             if (game_state.board[i][j] !== null) {
                 continue
             }
             game_state.board[i][j] = currentPlayer
-            console.log(game_state.board)
             winners();
+            console.log(game_state.board)
+            render();
+            
             if (currentPlayer === game_state.players.X) {
                 currentPlayer = game_state.players.O
                 document.getElementById("gamePhrases").innerHTML = "PLAYER 2 IT IS YOUR TURN"
@@ -159,6 +180,7 @@ function playerClick(event) {
         }
     }
    }
+   
 }
 
 //Bootstrap
@@ -183,5 +205,5 @@ function assignPlayers() {
         game_state.player1 = playerName2.value
         game_state.player2 = playerName1.value}
 
-    console.log(game_state)
+    :) --> CHECKING TO SEE FINAL COMMIT/UPLOAD IS DONE
 }*/
